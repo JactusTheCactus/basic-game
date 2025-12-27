@@ -11,4 +11,4 @@ while read -r s
 		./qb64 -x $s -o "$HOME/Projects/basic-game/bin/$b" &> $log || cat $log && sleep 5
 		./bin/$b || :
 done < <(find src -name \*.bas)
-find . -empty -delete
+find . -empty -o -name "qb64" -delete
