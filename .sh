@@ -7,18 +7,21 @@ flag() {
 }
 rm -rf bin logs 2> /dev/null || :
 mkdir -p bin logs logs/build
-curl \
+curl -L \
 	https://github.com/QB64Official/qb64/releases/download/v2.1/qb64_dev_2022-09-08-07-14-00_47f5044_lnx.tar.gz \
-	-L \
-	--output qb64.tar.gz
-tar -xf qb64.tar.gz --transform="s|^[^/]*|qb64|"
+	--output - | tar -xz --transform='s|^[^/]*|qb64|'
+find qb64 -type f ! \( \
+	-name qb64 -o \
+	-path \*/internal/c/\* -o \
+	-wholename \*/internal/support/vwatch/vwatch_stub.bm \
+\) -delete
 while read -r s
 	do
 		b=${s%.bas}
 		b=${b#src/}
-		./qb64/qb64 -x $s -o "$HOME/Projects/basic-game/bin/$b"
-		if flag local
-			then ./bin/$b || :
-		fi
+		./qb64/qb64 -x $s -o ../bin/$b
 done < <(find src -name \*.bas)
+if flag local
+	then ./bin/game || :
+fi
 find . -empty -delete
