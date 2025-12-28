@@ -10,18 +10,14 @@ mkdir -p bin logs logs/build
 curl -L \
 	https://github.com/QB64Official/qb64/releases/download/v2.1/qb64_dev_2022-09-08-07-14-00_47f5044_lnx.tar.gz \
 	--output - | tar -xz --transform='s|^[^/]*|qb64|'
-find qb64 -type f ! \( \
-	-name qb64 -o \
-	-path \*/internal/c/\* -o \
-	-wholename \*/internal/support/vwatch/vwatch_stub.bm \
-\) -delete
 while read -r s
 	do
 		b=${s%.bas}
 		b=${b#src/}
-		./qb64/qb64 -x $s -o ../bin/$b
+		./qb64/qb64 -x $s -o ../bin/$b &> logs/build/$b.log
 done < <(find src -name \*.bas)
+rm -rf qb64
 if flag local
-	then ./bin/game || :
+	then ./bin/app || :
 fi
 find . -empty -delete
