@@ -14,7 +14,8 @@ while read -r s
 	do
 		b=${s%.bas}
 		b=${b#src/}
-		./qb64/qb64 -x $s -o ../bin/$b &> logs/build/$b.log
+		./qb64/qb64 -x $s -o ../bin/$b &> logs/build/$b.log \
+			&& rm logs/build/$b.log
 done < <(find src -name \*.bas)
 rm -rf qb64
 if flag local
