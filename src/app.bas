@@ -24,7 +24,7 @@ details(c, 1) = "Shapeshifts into a large, black wolf"
 c = c + 1
 names(c) = "H4L3Y-R0551 (Haley Rossi)"
 species(c, 1) = "Robot": species(c, 2) = "COLOSSUS:RHODES[HYPERION]@SOLDIER#0551"
-details(c, 1) = "Has a translucent torso": details(c, 2) = "Her internals are vidible": details(c, 3) = "Internals resemble that of a human"
+details(c, 1) = "Has a translucent torso": details(c, 2) = "Her internals are visible": details(c, 3) = "Internals resemble that of a human"
 DO
     CLS
     SELECT CASE _KEYHIT
