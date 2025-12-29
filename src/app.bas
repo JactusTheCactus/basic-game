@@ -2,7 +2,7 @@ dim tab$: tab$ = chr$(9)
 const maxentries = 4
 dim names(1 to maxentries) as string
 dim species(1 to maxentries, 1 to 2) as string
-dim details(1 to maxentries, 1 to 2) as string
+dim details(1 to maxentries, 1 to 3) as string
 'Characters
 	'Ori del Corvo
 		names(1) = "Ori del Corvo"
@@ -22,6 +22,12 @@ dim details(1 to maxentries, 1 to 2) as string
 		species(4, 1) = "Human"
 		species(4, 2) = "Changeling"
 		details(4, 1) = "Shapeshifts into a large, black wolf"
+	'Robot
+		names(5) = "<ROBOT> (Placeholder)"
+		species(5, 1) = "Robot"
+		details(5, 1) = "Has a translucent torso"
+		details(5, 2) = "Her internals are vidible"
+		details(5, 3) = "Internals resemble that of a human"
 for i = 1 to maxentries
 	print str$(i); ". ";  names(i)
 	print tab$; "Species:"
