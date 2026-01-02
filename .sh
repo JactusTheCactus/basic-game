@@ -17,7 +17,9 @@ if ! [[ -f src/firacode.ttf ]]
 			src/firacode.zip \
 			FiraCode-Regular.ttf \
 			-d src
-		mv src/FiraCode-Regular.ttf src/firacode.ttf
+		mv \
+			src/FiraCode-Regular.ttf \
+			src/firacode.ttf
 		rm -r src/firacode.zip
 fi
 while read -r s
