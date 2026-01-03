@@ -13,7 +13,7 @@
 		{
 			"label": "Build",
 			"type": "shell",
-			"command": "./gpt.sh > gpt.md && ./.sh",
+			"command": "./gpt.sh > gpt.md && ./.sh app",
 			"group": {
 				"kind": "build",
 				"isDefault": true

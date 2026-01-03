@@ -15,18 +15,28 @@ if ! [[ -f src/firacode.ttf ]]
 		curl -fL \
 			https://font.download/dl/font/fira-code-2.zip \
 			--output src/firacode.zip
-		unzip -oj src/firacode.zip FiraCode-Regular.ttf -d src
-		mv src/FiraCode-Regular.ttf src/firacode.ttf
+		unzip \
+			-oj \
+			src/firacode.zip \
+			FiraCode-Regular.ttf \
+			-d src
+		mv \
+			src/FiraCode-Regular.ttf \
+			src/firacode.ttf
 		rm -r src/firacode.zip
 fi
 while read -r s
 	do
 		b="${s#src/}"
 		b="${b%.bas}"
-		./qb64.sh -x "$s" -o "$PWD/bin/$b" &> "logs/build/$b.log" && rm "logs/build/$b.log"
+		./qb64.sh \
+			-x "$s" \
+			-o "$PWD/bin/$b" \
+			&> "logs/build/$b.log" \
+			&& rm "logs/build/$b.log"
 done < <(find src -name \*.bas)
 rsync -a --exclude=*.bas src/ bin
-flag local && ./bin/app || :
+flag local && "./bin/$1" || :
 find . -empty -delete
 ```
 # `./qb64.sh`

@@ -33,5 +33,5 @@ while read -r s
 			&& rm "logs/build/$b.log"
 done < <(find src -name \*.bas)
 rsync -a --exclude=*.bas src/ bin
-flag local && ./bin/app || :
+flag local && "./bin/$1" || :
 find . -empty -delete
